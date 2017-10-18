@@ -2,7 +2,7 @@ class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
   url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-0.6.0.tar.gz"
-  version "0.6.0"
+  version "0.6.0-1"
   sha256 "581c82baeb3bbd73684ff362d09a21aaae87609115b5f9aba8d3b098a34bd9ba"
 
   depends_on "postgresql@9.6" => :build
@@ -10,8 +10,7 @@ class Timescaledb < Formula
   def install
     system "make"
     system "make", "install", "DESTDIR=#{buildpath}/stage"
-    (lib/"postgresql").install Dir["stage/**/lib/postgresql/timescaledb.so"]
-    (share/"postgresql/extension").install Dir["stage/**/share/postgresql/extension/*"]
+    (lib/"timescaledb").install "timescaledb.so"
   end
 
   test do
