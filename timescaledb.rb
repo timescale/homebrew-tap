@@ -1,9 +1,9 @@
 class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
-  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-0.6.0.tar.gz"
-  version "0.6.0-2"
-  sha256 "581c82baeb3bbd73684ff362d09a21aaae87609115b5f9aba8d3b098a34bd9ba"
+  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-0.6.1.tar.gz"
+  version "0.6.1"
+  sha256 "5d570c3931eb6363c07a9f7bc0b15cf75b26ea9890b5681c19790b719fe4a211"
 
   depends_on "postgresql@9.6" => :build
 
