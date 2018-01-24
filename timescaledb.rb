@@ -6,7 +6,7 @@ class Timescaledb < Formula
   sha256 "c4010b246ffd0e1247914f884dffff3971b0e590ac52ccb842a23ab015b4f299"
 
   depends_on "cmake" => :build
-  depends_on :postgresql => :build
+  depends_on "postgresql" => :build
 
   def install
     system "./bootstrap"
