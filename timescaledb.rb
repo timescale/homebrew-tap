@@ -1,9 +1,9 @@
 class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
-  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-0.8.0.tar.gz"
-  version "0.8.0-2"
-  sha256 "c4010b246ffd0e1247914f884dffff3971b0e590ac52ccb842a23ab015b4f299"
+  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-0.9.0.tar.gz"
+  version "0.9.0"
+  sha256 "db0f96632d497e219090ef687d8c66d048979bdbd534879ceddfa19770d420d7"
 
   depends_on "cmake" => :build
   depends_on "postgresql" => :build
@@ -18,7 +18,7 @@ class Timescaledb < Formula
     `chmod +x timescaledb_move.sh`
     `echo "#!/bin/bash" >> timescaledb_move.sh`
     `echo "echo 'Moving files into place...'" >> timescaledb_move.sh`
-    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb.so) #{libdir.strip}/timescaledb.so" >> timescaledb_move.sh`
+    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb*.so) #{libdir.strip}/" >> timescaledb_move.sh`
     `echo "/usr/bin/install -c -m 644 #{share}/timescaledb/* #{sharedir.strip}/extension/" >> timescaledb_move.sh`
     `echo "echo 'Success.'" >> timescaledb_move.sh`
     bin.install "timescaledb_move.sh"
