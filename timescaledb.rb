@@ -9,7 +9,7 @@ class Timescaledb < Formula
   depends_on "postgresql" => :build
 
   def install
-    system "./bootstrap"
+    system "./bootstrap -DPROJECT_INSTALL_METHOD=\"brew\""
     system "cd ./build && make"
     system "cd ./build && make install DESTDIR=#{buildpath}/stage"
     libdir = `pg_config --pkglibdir`
