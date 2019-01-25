@@ -2,7 +2,7 @@ class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
   url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-1.1.1.tar.gz"
-  version "1.1.1-1"
+  version "1.1.1-2"
   sha256 "6fc7c43b436a1b7f100b22f3ca1691c99b9a912ff9e8f95269401fe192811d19"
 
   depends_on "cmake" => :build
@@ -10,8 +10,14 @@ class Timescaledb < Formula
   depends_on "openssl" => :build
   depends_on "timescaledb-tools" => :recommended
 
+  option "with-oss-only", "Build TimescaleDB with only Apache-2 licensed code"
+
   def install
-    system "./bootstrap -DPROJECT_INSTALL_METHOD=\"brew\""
+    ossvar = ""
+    if build.with?("oss-only")
+      ossvar = " -DAPACHE_ONLY=1"
+    end
+    system "./bootstrap -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar}"
     system "cd ./build && make"
     system "cd ./build && make install DESTDIR=#{buildpath}/stage"
     libdir = `pg_config --pkglibdir`
