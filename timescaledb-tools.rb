@@ -1,9 +1,9 @@
 class TimescaledbTools < Formula
   desc "Client tools for working with TimescaleDB"
   homepage "https://www.timescaledb.com"
-  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-tools-0.3.0.tar.gz"
-  version "0.3.0"
-  sha256 "d0a10b2bf64e9f842a768e3675b8286ac2c79e89cc20f966c92f184597d4f332"
+  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-tools-0.4.0.tar.gz"
+  version "0.4.0"
+  sha256 "607db7d1fa0de65d484fd3b1dab6391a7c4d8edaa4086e5ac8a5638a5ae69fa6"
 
   def install
     bin.install "timescaledb-tune"
