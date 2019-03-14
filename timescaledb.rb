@@ -1,7 +1,7 @@
 class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
-  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-1.2.1.tar.gz"
+  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-1.2.2.tar.gz"
   version "1.2.2"
   sha256 "c8e8071c24707e3fa8a50abb788c85d03a1bd9d9dea2e273b4abf407f39c182a"
 
