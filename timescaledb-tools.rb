@@ -8,6 +8,8 @@ class TimescaledbTools < Formula
   def install
     bin.install "timescaledb-tune"
     bin.install "timescaledb-parallel-copy"
+    bin.install "ts-dump"
+    bin.install "ts-restore"
     end
 
   test do
