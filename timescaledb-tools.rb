@@ -15,5 +15,7 @@ class TimescaledbTools < Formula
   test do
     system "timescaledb-tune", "--version"
     system "timescaledb-parallel-copy", "--version"
+    system "ts-dump", "--help"
+    system "ts-restore", "--help"
   end
 end
