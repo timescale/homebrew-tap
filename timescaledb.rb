@@ -18,7 +18,7 @@ class Timescaledb < Formula
     if build.with?("oss-only")
       ossvar = " -DAPACHE_ONLY=1"
     end
-    system "./bootstrap -DREGRESS_CHECKS=OFF -DGENERATE_DOWNGRADE_SCRIPT=ON -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar}"
+    system "./bootstrap -DREGRESS_CHECKS=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar}"
     system "cd ./build && make"
     system "cd ./build && make install DESTDIR=#{buildpath}/stage"
     libdir = `pg_config --pkglibdir`
