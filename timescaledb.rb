@@ -1,9 +1,10 @@
 class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
-  url "https://timescalereleases.blob.core.windows.net/homebrew/timescaledb-2.3.1.tar.lzma"
-  version "2.3.1"
-  sha256 "81e83738361066887b4ec75bc5669ac1188381d9f970bfb630a91434931619da"
+  url "https://github.com/timescale/timescaledb/archive/refs/tags/2.4.0.tar.gz"
+  sha256 "1adbff3ae7f8f39d1b5ac2189d60b9bd0a8154c0c3603e53b030a204f72d86af"
+  version "2.4.0"
+  env :std
 
   depends_on "cmake" => :build
   depends_on "postgresql" => :build
@@ -18,9 +19,10 @@ class Timescaledb < Formula
     if build.with?("oss-only")
       ossvar = " -DAPACHE_ONLY=1"
     end
-    system "./bootstrap -DREGRESS_CHECKS=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar}"
-    system "cd ./build && make"
-    system "cd ./build && make install DESTDIR=#{buildpath}/stage"
+    ssldir = `brew --prefix openssl`.chomp()
+    system "./bootstrap -DREGRESS_CHECKS=OFF -DTAP_CHECKS=OFF -DWARNINGS_AS_ERRORS=OFF -DLINTER=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar} -DOPENSSL_ROOT_DIR=\"#{ssldir}\""
+    system "make -C build"
+    system "make -C build install DESTDIR=#{buildpath}/stage"
     libdir = `pg_config --pkglibdir`
     sharedir = `pg_config --sharedir`
     `touch timescaledb_move.sh`
