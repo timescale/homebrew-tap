@@ -1,9 +1,9 @@
 class Timescaledb < Formula
   desc "An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL."
   homepage "https://www.timescaledb.com"
-  url "https://github.com/timescale/timescaledb/archive/refs/tags/2.4.1.tar.gz"
-  sha256 "c0f10378dcaac2bc2f396fcfd3962401cb0f40e4707b3ca6b496cc4c388ab48b"
-  version "2.4.1"
+  url "https://github.com/timescale/timescaledb/archive/refs/tags/2.4.2.tar.gz"
+  sha256 "b206a376251259eb745eee819e7a853b3fbab9dc8443303714484a0fef89a2a4"
+  version "2.4.2"
   env :std
 
   depends_on "cmake" => :build
