@@ -20,7 +20,7 @@ class Timescaledb < Formula
       ossvar = " -DAPACHE_ONLY=1"
     end
     ssldir = `brew --prefix openssl`.chomp()
-    system "./bootstrap -DREGRESS_CHECKS=OFF -DTAP_CHECKS=OFF -DWARNINGS_AS_ERRORS=OFF -DLINTER=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar} -DOPENSSL_ROOT_DIR=\"#{ssldir}\""
+    system "./bootstrap -DCMAKE_BUILD_TYPE=RelWithDebInfo -DREGRESS_CHECKS=OFF -DTAP_CHECKS=OFF -DWARNINGS_AS_ERRORS=OFF -DLINTER=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar} -DOPENSSL_ROOT_DIR=\"#{ssldir}\""
     system "make -C build"
     system "make -C build install DESTDIR=#{buildpath}/stage"
     libdir = `pg_config --pkglibdir`
