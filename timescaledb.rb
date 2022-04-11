@@ -42,7 +42,7 @@ class Timescaledb < Formula
   end
 
   def caveats
-    pgvar = `find /usr/local/var/postgres* -name "postgresql.conf" | head -n 1`
+    pgvar = `find #{HOMEBREW_PREFIX}/var/postgres* -name "postgresql.conf" | head -n 1`
     s = "RECOMMENDED: Run 'timescaledb-tune' to update your config settings for TimescaleDB.\n\n"
     s += "  timescaledb-tune --quiet --yes\n\n"
 
