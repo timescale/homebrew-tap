@@ -7,7 +7,7 @@ class Timescaledb < Formula
   env :std
 
   depends_on "cmake" => :build
-  depends_on "postgresql" => :build
+  depends_on "postgresql@14" => :build
   depends_on "openssl" => :build
   depends_on "xz" => :build
   depends_on "timescaledb-tools" => :recommended
