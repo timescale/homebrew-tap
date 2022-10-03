@@ -8,7 +8,7 @@ class TimescaledbTools < Formula
   def install
     bin.install "timescaledb-tune"
     bin.install "timescaledb-parallel-copy"
-    end
+  end
 
   test do
     system "timescaledb-tune", "--version"

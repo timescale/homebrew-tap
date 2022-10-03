@@ -14,6 +14,10 @@ class Timescaledb < Formula
 
   option "with-oss-only", "Build TimescaleDB with only Apache-2 licensed code"
 
+  def postgresql
+    Formula["postgresql@14"]
+  end
+
   def install
     ossvar = ""
     if build.with?("oss-only")
@@ -42,18 +46,17 @@ class Timescaledb < Formula
   end
 
   def caveats
-    pgvar = `find #{HOMEBREW_PREFIX}/var/postgres* -name "postgresql.conf" | head -n 1`
     s = "RECOMMENDED: Run 'timescaledb-tune' to update your config settings for TimescaleDB.\n\n"
     s += "  timescaledb-tune --quiet --yes\n\n"
 
-    s += "IF NOT, you'll need to make sure to update #{pgvar.strip}\nto include the extension:\n\n"
+    s += "IF NOT, you'll need to make sure to update #{postgresql.name}\nto include the extension:\n\n"
     s += "  shared_preload_libraries = 'timescaledb'\n\n"
 
     s += "To finish the installation, you will need to run:\n\n"
     s += "  timescaledb_move.sh\n\n"
 
     s += "If PostgreSQL is installed via Homebrew, restart it:\n\n"
-    s += "  brew services restart postgresql\n\n"
+    s += "  brew services restart #{postgresql.name}\n\n"
     s
   end
 end
