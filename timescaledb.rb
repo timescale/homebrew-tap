@@ -19,11 +19,9 @@ class Timescaledb < Formula
   end
 
   def install
-    ossvar = ""
-    if build.with?("oss-only")
-      ossvar = " -DAPACHE_ONLY=1"
-    end
-    ssldir = `brew --prefix openssl`.chomp()
+    ossvar = build.with?("oss-only") ? " -DAPACHE_ONLY=1" : ""
+    ssldir = Formula["openssl"].opt_prefix
+
     system "./bootstrap -DCMAKE_BUILD_TYPE=RelWithDebInfo -DREGRESS_CHECKS=OFF -DTAP_CHECKS=OFF -DWARNINGS_AS_ERRORS=OFF -DLINTER=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar} -DOPENSSL_ROOT_DIR=\"#{ssldir}\""
     system "make -C build"
     system "make -C build install DESTDIR=#{buildpath}/stage"
@@ -61,17 +59,18 @@ class Timescaledb < Formula
   end
 
   def caveats
-    s = "RECOMMENDED: Run 'timescaledb-tune' to update your config settings for TimescaleDB.\n\n"
-    s += "  timescaledb-tune --quiet --yes\n\n"
+    <<~EOS
+      RECOMMENDED: Run 'timescaledb-tune' to update your config settings for TimescaleDB.
+        timescaledb-tune --quiet --yes
 
-    s += "IF NOT, you'll need to make sure to update #{postgresql.name}\nto include the extension:\n\n"
-    s += "  shared_preload_libraries = 'timescaledb'\n\n"
+      IF NOT, you'll need to update "postgresql.conf" to include the extension:
+        shared_preload_libraries = 'timescaledb'
 
-    s += "To finish the installation, you will need to run:\n\n"
-    s += "  timescaledb_move.sh\n\n"
+      To finish the installation, you will need to run:
+        timescaledb_move.sh
 
-    s += "If PostgreSQL is installed via Homebrew, restart it:\n\n"
-    s += "  brew services restart #{postgresql.name}\n\n"
-    s
+      If PostgreSQL is installed via Homebrew, restart it:
+        brew services restart #{postgresql.name}
+    EOS
   end
 end
