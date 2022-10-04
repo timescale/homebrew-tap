@@ -25,18 +25,10 @@ class Timescaledb < Formula
     system "./bootstrap -DCMAKE_BUILD_TYPE=RelWithDebInfo -DREGRESS_CHECKS=OFF -DTAP_CHECKS=OFF -DWARNINGS_AS_ERRORS=OFF -DLINTER=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar} -DOPENSSL_ROOT_DIR=\"#{ssldir}\""
     system "make -C build"
     system "make -C build install DESTDIR=#{buildpath}/stage"
-    libdir = `pg_config --pkglibdir`
-    sharedir = `pg_config --sharedir`
-    `touch timescaledb_move.sh`
-    `chmod +x timescaledb_move.sh`
-    `echo "#!/bin/bash" >> timescaledb_move.sh`
-    `echo "echo 'Moving files into place...'" >> timescaledb_move.sh`
-    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb*.so) #{libdir.strip}/" >> timescaledb_move.sh`
-    `echo "/usr/bin/install -c -m 644 #{share}/timescaledb/* #{sharedir.strip}/extension/" >> timescaledb_move.sh`
-    `echo "echo 'Success.'" >> timescaledb_move.sh`
-    bin.install "timescaledb_move.sh"
-    (lib/"timescaledb").install Dir["stage/**/lib/*"]
-    (share/"timescaledb").install Dir["stage/**/share/postgresql*/extension/*"]
+
+    (lib/postgresql.name).install Dir["stage/**/lib/**/timescaledb*.so"]
+    (share/postgresql.name/"extension").install Dir["stage/**/share/**/extension/timescaledb--*.sql"]
+    (share/postgresql.name/"extension").install Dir["stage/**/share/**/extension/timescaledb.control"]
     end
 
   test do
@@ -65,9 +57,6 @@ class Timescaledb < Formula
 
       IF NOT, you'll need to update "postgresql.conf" to include the extension:
         shared_preload_libraries = 'timescaledb'
-
-      To finish the installation, you will need to run:
-        timescaledb_move.sh
 
       If PostgreSQL is installed via Homebrew, restart it:
         brew services restart #{postgresql.name}
