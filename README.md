@@ -10,6 +10,14 @@ install from our [official guide][2].
 
 ## Development
 
+If you want to edit the actual formula locally try:
+
+```bash
+brew edit timescaledb
+```
+
+## Testing
+
 If you want to test a Pull Request in progress in this repository, use the
 following steps:
 
