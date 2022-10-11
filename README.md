@@ -1,11 +1,11 @@
 # Brew formulas for TimescaleDB
 
 The repository that hosts the [brew][1] formulas to install TimescaleDB on
-MacOs.
+macOs.
 
 ## Installing from the formula
 
-If you're looking for only installing the TimescaleDB on a MacOs, check how to
+If you're looking for only installing the TimescaleDB on a macOs, check how to
 install from our [official guide][2].
 
 ## Development
@@ -21,7 +21,7 @@ brew edit timescaledb
 If you want to test a Pull Request in progress in this repository, use the
 following steps:
 
-1. Enter in the formulas' repository folder:
+Navigate to the Timescale tap directory:
 
 ```bash
 cd $(brew --prefix)/Homebrew/Library/Taps/timescale/homebrew-tap/
