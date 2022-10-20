@@ -6,13 +6,13 @@ class Timescaledb < Formula
   version "2.8.1"
   env :std
 
+  option "with-oss-only", "Build TimescaleDB with only Apache-2 licensed code"
+
   depends_on "cmake" => :build
-  depends_on "postgresql@14" => :build
   depends_on "openssl" => :build
+  depends_on "postgresql@14" => :build
   depends_on "xz" => :build
   depends_on "timescaledb-tools" => :recommended
-
-  option "with-oss-only", "Build TimescaleDB with only Apache-2 licensed code"
 
   def postgresql
     Formula["postgresql@14"]
@@ -23,8 +23,8 @@ class Timescaledb < Formula
     ssldir = Formula["openssl"].opt_prefix
 
     system "./bootstrap -DCMAKE_BUILD_TYPE=RelWithDebInfo -DREGRESS_CHECKS=OFF -DTAP_CHECKS=OFF -DWARNINGS_AS_ERRORS=OFF -DLINTER=OFF -DPROJECT_INSTALL_METHOD=\"brew\"#{ossvar} -DOPENSSL_ROOT_DIR=\"#{ssldir}\""
-    system "make -C build"
-    system "make -C build install DESTDIR=#{buildpath}/stage"
+    system "make", "-C", "build"
+    system "make", "-C", "build", "install", "DESTDIR=#{buildpath}/stage"
     libdir = `pg_config --pkglibdir`
     sharedir = `pg_config --sharedir`
     `touch timescaledb_move.sh`
@@ -37,7 +37,23 @@ class Timescaledb < Formula
     bin.install "timescaledb_move.sh"
     (lib/"timescaledb").install Dir["stage/**/lib/*"]
     (share/"timescaledb").install Dir["stage/**/share/postgresql*/extension/*"]
-    end
+  end
+
+  def caveats
+    <<~EOS
+      RECOMMENDED: Run 'timescaledb-tune' to update your config settings for TimescaleDB.
+        timescaledb-tune --quiet --yes
+
+      IF NOT, you'll need to update "postgresql.conf" to include the extension:
+        shared_preload_libraries = 'timescaledb'
+
+      To finish the installation, you will need to run:
+        timescaledb_move.sh
+
+      If PostgreSQL is installed via Homebrew, restart it:
+        brew services restart #{postgresql.name}
+    EOS
+  end
 
   test do
     pg_ctl = postgresql.opt_bin/"pg_ctl"
@@ -56,21 +72,5 @@ class Timescaledb < Formula
     ensure
       system pg_ctl, "stop", "-D", testpath/"test"
     end
-  end
-
-  def caveats
-    <<~EOS
-      RECOMMENDED: Run 'timescaledb-tune' to update your config settings for TimescaleDB.
-        timescaledb-tune --quiet --yes
-
-      IF NOT, you'll need to update "postgresql.conf" to include the extension:
-        shared_preload_libraries = 'timescaledb'
-
-      To finish the installation, you will need to run:
-        timescaledb_move.sh
-
-      If PostgreSQL is installed via Homebrew, restart it:
-        brew services restart #{postgresql.name}
-    EOS
   end
 end
