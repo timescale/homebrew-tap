@@ -35,7 +35,9 @@ class TimescaledbToolkit < Formula
       system "cargo", "pgx", "package"
     end
 
-    (lib/postgresql.name).install Dir["target/release/**/lib/**/timescaledb_toolkit.so"]
+    system "cargo", "run", "--bin", "post-install", "--", "--dir", "target/release/timescaledb_toolkit-pg14"
+
+    (lib/postgresql.name).install Dir["target/release/**/lib/**/timescaledb_toolkit*.so"]
     (share/postgresql.name/"extension").install Dir["target/release/**/share/**/timescaledb_toolkit--*.sql"]
     (share/postgresql.name/"extension").install Dir["target/release/**/share/**/timescaledb_toolkit.control"]
   end
@@ -48,7 +50,7 @@ class TimescaledbToolkit < Formula
     system pg_ctl, "initdb", "-D", testpath/"test"
     (testpath/"test/postgresql.conf").write <<~EOS, mode: "a+"
 
-      shared_preload_libraries = 'timescaledb_toolkit'
+      shared_preload_libraries = 'timescaledb_toolkit-#{version}'
       port = #{port}
     EOS
     system pg_ctl, "start", "-D", testpath/"test", "-l", testpath/"log"
