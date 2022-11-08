@@ -1,13 +1,13 @@
 class TimescaledbToolkit < Formula
   desc "Extension for more hyperfunctions, fully compatible with TimescaleDB and PostgreSQL"
   homepage "https://www.timescale.com"
-  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.11.0.tar.gz"
-  sha256 "965766c9360a6a1f3be9960e9233ccfaa3f1b555d0a2e1928dc5914b348e2416"
+  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.12.0.tar.gz"
+  sha256 "a4fe2079880d6ab7b26f9a38510fd099beae81288e40e928622738bc0d9ded58"
   head "https://github.com/timescale/timescaledb-toolkit.git", branch: "main"
 
   bottle do
     root_url "https://github.com/timescale/timescaledb-toolkit/releases/download/1.11.0"
-    sha256 cellar: :any, arm64_monterey: "b6a587176b3c6e353fc3c852813b3c09da2153b644f42422f4ce5648266b25c7"
+    sha256 cellar: :any, arm64_monterey: "047c1923c137674572b391dd7fd6d2f0a1f501cbf34d04fa29ee9b6783df2f2c"
   end
 
   depends_on "rust" => :build
@@ -19,8 +19,8 @@ class TimescaledbToolkit < Formula
   end
 
   resource "cargo-pgx" do
-    url "https://github.com/tcdi/pgx/archive/refs/tags/v0.4.5.tar.gz"
-    sha256 "dad315b56495c7a35efa941a71494b71a6d9eb3549900534ed5fc0ba88dcb0fe"
+    url "https://github.com/tcdi/pgx/archive/refs/tags/v0.5.4.tar.gz"
+    sha256 "7c6b5e7fdc6b974b726bb4b965ae8e9dacecc059db1a59b1ec471edb090b4454"
   end
 
   def install
