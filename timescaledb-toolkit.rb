@@ -7,7 +7,7 @@ class TimescaledbToolkit < Formula
 
   bottle do
     root_url "https://github.com/timescale/timescaledb-toolkit/releases/download/1.11.0"
-    sha256 cellar: :any, arm64_monterey: "047c1923c137674572b391dd7fd6d2f0a1f501cbf34d04fa29ee9b6783df2f2c"
+    sha256 cellar: :any, arm64_monterey: "b170f821963811ebbf03fa473b50d6468bf87bccd3ea5b9e29dba71524d9c981"
   end
 
   depends_on "rust" => :build
