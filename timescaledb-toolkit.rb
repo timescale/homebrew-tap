@@ -1,14 +1,14 @@
 class TimescaledbToolkit < Formula
   desc "Extension for more hyperfunctions, fully compatible with TimescaleDB and PostgreSQL"
   homepage "https://www.timescale.com"
-  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.12.0.tar.gz"
-  sha256 "a4fe2079880d6ab7b26f9a38510fd099beae81288e40e928622738bc0d9ded58"
+  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.12.1.tar.gz"
+  sha256 "491c1a97739cb1608c3ae44d42878715c9c513e30bd5788b29d61884a96c86a9"
   head "https://github.com/timescale/timescaledb-toolkit.git", branch: "main"
 
   bottle do
-    root_url "https://github.com/timescale/timescaledb-toolkit/releases/download/1.12.0"
-    sha256 cellar: :any, arm64_monterey: "b170f821963811ebbf03fa473b50d6468bf87bccd3ea5b9e29dba71524d9c981"
-    sha256 cellar: :any, arm64_ventura: "7360783972362f1ee9343ca20d5b8a11b1d7a4bc53f69e29a45431dd5e57fa96"
+    root_url "https://github.com/timescale/timescaledb-toolkit/releases/download/1.12.1"
+    sha256 cellar: :any, arm64_ventura: "b577c0641f2ca9a33426d57f52f3acec3c688de68b7bd3eb17dbe7c5a1656748"
+    sha256 cellar: :any, arm64_monterey: "02e39276db5e32997b8d7cfbd5a3263663d70fdc79a652d23f60c03d67a1469d"
   end
 
   depends_on "rust" => :build
