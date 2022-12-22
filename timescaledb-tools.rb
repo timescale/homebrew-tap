@@ -3,7 +3,7 @@ class TimescaledbTools < Formula
   homepage "https://www.timescaledb.com"
   url "https://github.com/timescale/timescaledb-tune/releases/download/v0.14.3/timescaledb-tools-0.14.3-darwin.tgz"
   version "0.14.3"
-  sha256 "e3f546f2c7bfce82ad008a7af3ad05940a46266e6fe2006fcb82a60c3eb1ed20"
+  sha256 "fb7bb618f8216c2b43f09a0eae0c92d1e4c658742a41a674c431cbfa4865fac9"
 
   def install
     bin.install "timescaledb-tune"
