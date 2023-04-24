@@ -15,7 +15,7 @@ class TimescaledbToolkit < Formula
 
   resource "cargo-pgx" do
     url "https://github.com/tcdi/pgx/archive/refs/tags/v0.7.1.tar.gz"
-    sha256 "8615ad8497cf2bf9f50faf2f2e495f2c6fefa935d70414fc21a29dc8c6256754"
+    sha256 "71f44407760cd8b8bf4d8cd20964b26f11b815653b99978147b7bd0a482a39b5"
   end
 
   def install
