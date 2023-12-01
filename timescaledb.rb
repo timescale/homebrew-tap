@@ -10,12 +10,12 @@ class Timescaledb < Formula
 
   depends_on "cmake" => :build
   depends_on "openssl" => :build
-  depends_on "postgresql@15" => :build
+  depends_on "postgresql@16" => :build
   depends_on "xz" => :build
   depends_on "timescale/tap/timescaledb-tools" => :recommended
 
   def postgresql
-    Formula["postgresql@15"]
+    Formula["postgresql@16"]
   end
 
   def install
