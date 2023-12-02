@@ -31,7 +31,7 @@ class Timescaledb < Formula
     `chmod +x timescaledb_move.sh`
     `echo "#!/bin/bash" >> timescaledb_move.sh`
     `echo "echo 'Moving files into place...'" >> timescaledb_move.sh`
-    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb*.so) #{libdir.strip}/" >> timescaledb_move.sh`
+    `echo "/usr/bin/install -c -m 755 \\\$(find #{lib} -name timescaledb*.dylib) #{libdir.strip}/" >> timescaledb_move.sh`
     `echo "/usr/bin/install -c -m 644 #{share}/timescaledb/* #{sharedir.strip}/extension/" >> timescaledb_move.sh`
     `echo "echo 'Success.'" >> timescaledb_move.sh`
     bin.install "timescaledb_move.sh"
