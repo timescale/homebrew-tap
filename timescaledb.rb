@@ -19,6 +19,7 @@ class Timescaledb < Formula
   end
 
   def install
+    check_postgresql_version
     ossvar = build.with?("oss-only") ? " -DAPACHE_ONLY=1" : ""
     ssldir = Formula["openssl"].opt_prefix
 
@@ -37,6 +38,12 @@ class Timescaledb < Formula
     bin.install "timescaledb_move.sh"
     (lib/"timescaledb").install Dir["stage/**/lib/*"]
     (share/"timescaledb").install Dir["stage/**/share/postgresql*/extension/*"]
+  end
+
+  def check_postgresql_version
+    if postgresql.version >= Version.new('17.0') && postgresql.revision < 3
+      odie "PostgreSQL 17.03 or higher is required, but you have #{postgresql.version}.#{postgresql.revision}"
+    end
   end
 
   def caveats
