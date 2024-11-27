@@ -41,7 +41,7 @@ class Timescaledb < Formula
   end
 
   def check_postgresql_version
-    if postgresql.version >= Version.new('17.0') && postgresql.revision == 1
+    if postgresql.version >= Version.new('17.0') && postgresql.revision < 2
       odie "PostgreSQL 17.02 or higher is required, but you have #{postgresql.version}.#{postgresql.revision}"
     end
   end
