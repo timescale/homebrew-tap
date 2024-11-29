@@ -30,6 +30,11 @@ class TimescaledbToolkit < Formula
       system "cargo", "pgrx", "package"
     end
 
+    dylib = Dir.glob("target/release/timescaledb_toolkit-pg17/**/timescaledb_toolkit*.dylib").first
+    if dylib
+      File.rename(dylib, dylib.sub(/\.dylib$/, '.so'))
+    end
+
     system "cargo", "run", "--bin", "post-install", "--", "--dir", "target/release/timescaledb_toolkit-pg17"
 
     (lib/postgresql.name).install Dir["target/release/**/lib/**/timescaledb_toolkit*.so"]
