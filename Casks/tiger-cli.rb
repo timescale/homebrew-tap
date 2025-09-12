@@ -4,7 +4,7 @@ cask "tiger-cli" do
   desc "Tiger CLI - TigerData Cloud Platform CLI
 Command-line interface for managing TigerData Cloud Platform resources"
   homepage "https://github.com/timescale/tiger-cli"
-  version "0.0.0-alpha.1"
+  version "0.0.0-alpha.11"
 
   livecheck do
     skip "Auto-generated on release."
@@ -14,23 +14,23 @@ Command-line interface for managing TigerData Cloud Platform resources"
 
   on_macos do
     on_intel do
-      url "https://github.com/timescale/tiger-cli/releases/download/v#{version}/tiger-cli_Darwin_x86_64.tar.gz"
-      sha256 "01c696e947f608cf52e3d2612164b5cb2c8640738cb32a79a49cf141b5d7d6c6"
+      url "https://tiger-cli-releases.s3.us-east-1.amazonaws.com/releases/v#{version}/tiger-cli_Darwin_x86_64.tar.gz"
+      sha256 "3443db10ebf5f4dddb9f703811948948fa70ffe52318fdbcefea465fb9110623"
     end
     on_arm do
-      url "https://github.com/timescale/tiger-cli/releases/download/v#{version}/tiger-cli_Darwin_arm64.tar.gz"
-      sha256 "e1228e0ac8588aa842b1dbf05cdfa390d7660dad83549d919b8f9db5afcad3cb"
+      url "https://tiger-cli-releases.s3.us-east-1.amazonaws.com/releases/v#{version}/tiger-cli_Darwin_arm64.tar.gz"
+      sha256 "7883daf8492784425344fab858a680d06a75d9561c57d40412c4bcf0f8b15af6"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/timescale/tiger-cli/releases/download/v#{version}/tiger-cli_Linux_x86_64.tar.gz"
-      sha256 "03667ec95b57d65c6ed3c7f7196f25b96c67cba7005f69135592579fb0fda5a6"
+      url "https://tiger-cli-releases.s3.us-east-1.amazonaws.com/releases/v#{version}/tiger-cli_Linux_x86_64.tar.gz"
+      sha256 "91b3814d4f059f5574d7c332a530d44c7dac6f53f3291d2e5c4a2bd8c35ef58e"
     end
     on_arm do
-      url "https://github.com/timescale/tiger-cli/releases/download/v#{version}/tiger-cli_Linux_arm64.tar.gz"
-      sha256 "6209467f721a70aac44af733cfafcdb5a93102acc440f525f46d0dab76b524af"
+      url "https://tiger-cli-releases.s3.us-east-1.amazonaws.com/releases/v#{version}/tiger-cli_Linux_arm64.tar.gz"
+      sha256 "3896e13e96b2540e69e1a62b57b28d5e4421953ead9efab90893c65a8c30a869"
     end
   end
 
