@@ -4,7 +4,7 @@ cask "tiger-cli" do
   desc "Tiger CLI - TigerData Cloud Platform CLI
 Command-line interface for managing TigerData Cloud Platform resources"
   homepage "https://github.com/timescale/tiger-cli"
-  version "0.13.3"
+  version "0.13.4"
 
   livecheck do
     skip "Auto-generated on release."
@@ -15,22 +15,22 @@ Command-line interface for managing TigerData Cloud Platform resources"
   on_macos do
     on_intel do
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Darwin_x86_64.tar.gz"
-      sha256 "759f3e0ccca91e059fbf167fcdeadc629aa430cbc8f6486defbe36e5c124951b"
+      sha256 "cb6153b336ba955a2bb8842c4157851e863ae17c9bac152a6ef1a26fa20f06d7"
     end
     on_arm do
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Darwin_arm64.tar.gz"
-      sha256 "d22953d3a62d9ed81cda6b11c9cf6c3a1a0ce16a0dad917dbb0f439f57882a0b"
+      sha256 "1b5796b063c4b7d0cc8d606dec29998ccfbcacee5000660b3f8dc3ca4f162792"
     end
   end
 
   on_linux do
     on_intel do
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Linux_x86_64.tar.gz"
-      sha256 "0374a4c0963b5b873cd8c5df5eaf6ebcf54f265a20db59339f18352e61582c7f"
+      sha256 "d256f09d9195a37c7e1a1a3ec95f62e2c4d148be3df11ebd38edac8ddd4db99e"
     end
     on_arm do
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Linux_arm64.tar.gz"
-      sha256 "b31d2d707eed021c5cdb66ab3bc3a5c02418c636b7cc0b9b04975b34a28d3627"
+      sha256 "dc4fa521fa42b740556ae569dde834ff87ad3212e9b28edd5b239410e2800396"
     end
   end
 
