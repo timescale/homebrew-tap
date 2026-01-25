@@ -4,22 +4,22 @@ class Timescaledb < Formula
   url "https://github.com/timescale/timescaledb/archive/refs/tags/2.24.0.tar.gz"
   sha256 "06a5d38c52bebb364104541002ccfb9ea739f93183c339895f0d1ed90b005e17"
   version "2.24.0"
+  revision 1
   env :std
 
   option "with-oss-only", "Build TimescaleDB with only Apache-2 licensed code"
 
   depends_on "cmake" => :build
   depends_on "openssl" => :build
-  depends_on "postgresql@17" => :build
+  depends_on "postgresql@18" => :build
   depends_on "xz" => :build
   depends_on "timescale/tap/timescaledb-tools" => :recommended
 
   def postgresql
-    Formula["postgresql@17"]
+    Formula["postgresql@18"]
   end
 
   def install
-    check_postgresql_version
     ossvar = build.with?("oss-only") ? " -DAPACHE_ONLY=1" : ""
     ssldir = Formula["openssl"].opt_prefix
 
@@ -38,13 +38,6 @@ class Timescaledb < Formula
     bin.install "timescaledb_move.sh"
     (lib/"timescaledb").install Dir["stage/**/lib/*"]
     (share/"timescaledb").install Dir["stage/**/share/postgresql*/extension/*"]
-  end
-
-  def check_postgresql_version
-    if postgresql.version >= Version.new('17.0') &&
-        postgresql.version <= Version.new('17.1') && postgresql.revision < 2
-      odie "PostgreSQL 17.02 or higher is required, but you have #{postgresql.version}.#{postgresql.revision}"
-    end
   end
 
   def caveats
