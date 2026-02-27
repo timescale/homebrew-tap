@@ -28,11 +28,12 @@ class Ox < Formula
       system "/usr/bin/xattr", "-dr", "com.apple.quarantine", binary
     end
     bin.install binary => "ox"
-    if OS.mac?
-      system "/usr/bin/xattr", "-dr", "com.apple.quarantine", bin/"ox"
-    end
 
-    generate_completions_from_executable(bin/"ox", "complete")
+    # Generate shell completions manually since generate_completions_from_executable
+    # fails with Bun-compiled binaries in Homebrew's install sandbox.
+    (bash_completion/"ox").write shell_output("#{bin}/ox complete bash")
+    (zsh_completion/"_ox").write shell_output("#{bin}/ox complete zsh")
+    (fish_completion/"ox.fish").write shell_output("#{bin}/ox complete fish")
   end
 
   test do
