@@ -28,13 +28,6 @@ class Ox < Formula
       system "/usr/bin/xattr", "-cr", binary
     end
     bin.install binary => "ox"
-    if OS.mac?
-      # Re-sign the installed binary ad-hoc so macOS Gatekeeper allows execution
-      system "/usr/bin/xattr", "-cr", bin/"ox"
-      system "/usr/bin/codesign", "--force", "--sign", "-", bin/"ox"
-    end
-
-    generate_completions_from_executable(bin/"ox", "complete")
   end
 
   test do
