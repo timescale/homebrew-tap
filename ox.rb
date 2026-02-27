@@ -29,11 +29,17 @@ class Ox < Formula
     end
     bin.install binary => "ox"
 
-    # Generate shell completions manually since generate_completions_from_executable
-    # fails with Bun-compiled binaries in Homebrew's install sandbox.
-    (bash_completion/"ox").write shell_output("#{bin}/ox complete bash")
-    (zsh_completion/"_ox").write shell_output("#{bin}/ox complete zsh")
-    (fish_completion/"ox.fish").write shell_output("#{bin}/ox complete fish")
+    # Generate shell completions using system calls instead of
+    # generate_completions_from_executable, which uses IO.popen fork+exec
+    # that fails with Bun-compiled binaries in Homebrew's install environment.
+    output = Utils.popen_read(bin/"ox", "complete", "bash")
+    (bash_completion/"ox").write output if $CHILD_STATUS.success?
+
+    output = Utils.popen_read(bin/"ox", "complete", "zsh")
+    (zsh_completion/"_ox").write output if $CHILD_STATUS.success?
+
+    output = Utils.popen_read(bin/"ox", "complete", "fish")
+    (fish_completion/"ox.fish").write output if $CHILD_STATUS.success?
   end
 
   test do
