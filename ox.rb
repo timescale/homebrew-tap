@@ -25,20 +25,13 @@ class Ox < Formula
   def install
     binary = Dir.glob("ox-*").first
     if OS.mac?
-      system "/usr/bin/xattr", "-dr", "com.apple.quarantine", binary
+      # Remove quarantine and re-sign the binary ad-hoc so macOS allows execution
+      system "/usr/bin/xattr", "-cr", binary
+      system "/usr/bin/codesign", "--force", "--sign", "-", binary
     end
     bin.install binary => "ox"
 
-    # Generate shell completions.
-    # Note: generate_completions_from_executable uses IO.popen fork+exec which
-    # fails with Bun-compiled binaries. Use IO.popen with array form instead.
-    bash_completion.mkpath
-    zsh_completion.mkpath
-    fish_completion.mkpath
-
-    IO.popen([(bin/"ox").to_s, "complete", "bash"]) { |io| (bash_completion/"ox").write io.read }
-    IO.popen([(bin/"ox").to_s, "complete", "zsh"]) { |io| (zsh_completion/"_ox").write io.read }
-    IO.popen([(bin/"ox").to_s, "complete", "fish"]) { |io| (fish_completion/"ox.fish").write io.read }
+    generate_completions_from_executable(bin/"ox", "complete")
   end
 
   test do
