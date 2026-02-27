@@ -24,21 +24,14 @@ class Ox < Formula
 
   def install
     binary = Dir.glob("ox-*").first
+    # Downloaded raw binaries don't have the execute bit set.
+    chmod 0755, binary
     if OS.mac?
       system "/usr/bin/xattr", "-cr", binary
     end
     bin.install binary => "ox"
 
-    # Debug: check the binary
-    ohai "Installed binary: #{bin}/ox"
-    ohai "File exists: #{File.exist?(bin/"ox")}"
-    ohai "File executable: #{File.executable?(bin/"ox")}"
-    ohai "File stat: #{File.stat(bin/"ox").mode.to_s(8)}"
-    ohai "PATH: #{ENV["PATH"]}"
-
-    # Try direct Ruby exec test
-    result = `"#{bin}/ox" --version 2>&1`
-    ohai "Direct backtick result: #{result.strip}, exit: #{$?.exitstatus}"
+    generate_completions_from_executable(bin/"ox", "complete")
   end
 
   test do
