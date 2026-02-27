@@ -28,6 +28,9 @@ class Ox < Formula
       system "/usr/bin/xattr", "-dr", "com.apple.quarantine", binary
     end
     bin.install binary => "ox"
+    if OS.mac?
+      system "/usr/bin/xattr", "-dr", "com.apple.quarantine", bin/"ox"
+    end
 
     generate_completions_from_executable(bin/"ox", "complete")
   end
