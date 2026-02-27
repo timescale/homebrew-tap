@@ -24,14 +24,10 @@ class Ox < Formula
 
   def install
     binary = Dir.glob("ox-*").first
-    # Remove macOS quarantine attribute before installing so the binary can
-    # execute during completion generation.
     if OS.mac?
       system "/usr/bin/xattr", "-dr", "com.apple.quarantine", binary
     end
-
     bin.install binary => "ox"
-    generate_completions_from_executable(bin/"ox", "complete")
   end
 
   test do
