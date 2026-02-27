@@ -25,11 +25,14 @@ class Ox < Formula
   def install
     binary = Dir.glob("ox-*").first
     if OS.mac?
-      # Remove quarantine and re-sign the binary ad-hoc so macOS allows execution
       system "/usr/bin/xattr", "-cr", binary
-      system "/usr/bin/codesign", "--force", "--sign", "-", binary
     end
     bin.install binary => "ox"
+    if OS.mac?
+      # Re-sign the installed binary ad-hoc so macOS Gatekeeper allows execution
+      system "/usr/bin/xattr", "-cr", bin/"ox"
+      system "/usr/bin/codesign", "--force", "--sign", "-", bin/"ox"
+    end
 
     generate_completions_from_executable(bin/"ox", "complete")
   end
