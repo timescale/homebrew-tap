@@ -29,15 +29,15 @@ class Ox < Formula
     end
     bin.install binary => "ox"
 
-    # Generate shell completions via shell redirect. Homebrew's IO.popen
-    # fork+exec fails with Bun-compiled binaries, so we use system() with
-    # shell redirection instead.
+    # Generate shell completions. We use /bin/sh -c with redirect because
+    # Homebrew's IO.popen fork+exec and Ruby's system() both fail to exec
+    # Bun-compiled binaries during install.
     bash_completion.mkpath
     zsh_completion.mkpath
     fish_completion.mkpath
-    system "#{bin}/ox complete bash > #{bash_completion}/ox"
-    system "#{bin}/ox complete zsh > #{zsh_completion}/_ox"
-    system "#{bin}/ox complete fish > #{fish_completion}/ox.fish"
+    system "/bin/bash", "-c", "#{bin}/ox complete bash > #{bash_completion}/ox"
+    system "/bin/bash", "-c", "#{bin}/ox complete zsh > #{zsh_completion}/_ox"
+    system "/bin/bash", "-c", "#{bin}/ox complete fish > #{fish_completion}/ox.fish"
   end
 
   test do
