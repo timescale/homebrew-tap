@@ -1,21 +1,21 @@
 class TimescaledbToolkit < Formula
   desc "Extension for more hyperfunctions, fully compatible with TimescaleDB and PostgreSQL"
   homepage "https://www.timescale.com"
-  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.19.0.tar.gz"
-  sha256 "b7d58e1b1ed7c5b66409991133e4e361f723cf446cbea7dd9f894ec11ddd6652"
+  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.22.0.tar.gz"
+  sha256 "b07a9fa180715e019dc19b21212238ad68bfdb38dced5fbfe55098ddee92821d"
   head "https://github.com/timescale/timescaledb-toolkit.git", branch: "main"
 
   depends_on "rust" => :build
   depends_on "rustfmt" => :build
-  depends_on "postgresql@17"
+  depends_on "postgresql@18"
 
   def postgresql
-    Formula["postgresql@17"]
+    Formula["postgresql@18"]
   end
 
   resource "cargo-pgrx" do
-    url "https://github.com/pgcentralfoundation/pgrx/archive/refs/tags/v0.12.8.tar.gz"
-    sha256 "bfdbeb96c777a15daa9cba0308d75ef49e23a8b30f4d3040ddde528d6ef337f8"
+    url "https://github.com/pgcentralfoundation/pgrx/archive/refs/tags/v0.16.1.tar.gz"
+    sha256 "8638d911003b93e8a73ad86e3cfa807165d2d3e69fce45dff98b19838ca66d13"
   end
 
   def install
@@ -24,18 +24,18 @@ class TimescaledbToolkit < Formula
 
     resource("cargo-pgrx").stage "pgrx"
     system "cargo", "install", "--locked", "--path", "pgrx/cargo-pgrx"
-    system "cargo", "pgrx", "init", "--pg17", "pg_config"
+    system "cargo", "pgrx", "init", "--pg18", "pg_config"
 
     cd "extension" do
       system "cargo", "pgrx", "package"
     end
 
-    dylib = Dir.glob("target/release/timescaledb_toolkit-pg17/**/timescaledb_toolkit*.dylib").first
+    dylib = Dir.glob("target/release/timescaledb_toolkit-pg18/**/timescaledb_toolkit*.dylib").first
     if dylib
       File.rename(dylib, dylib.sub(/\.dylib$/, '.so'))
     end
 
-    system "cargo", "run", "--bin", "post-install", "--", "--dir", "target/release/timescaledb_toolkit-pg17"
+    system "cargo", "run", "--bin", "post-install", "--", "--dir", "target/release/timescaledb_toolkit-pg18"
 
     (lib/postgresql.name).install Dir["target/release/**/lib/**/timescaledb_toolkit*.so"]
     (share/postgresql.name/"extension").install Dir["target/release/**/share/**/timescaledb_toolkit--*.sql"]
