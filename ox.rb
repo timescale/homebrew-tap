@@ -1,24 +1,24 @@
 class Ox < Formula
   desc "Run AI coding agents in isolated sandboxes"
   homepage "https://ox.build"
-  version "0.16.3"
+  version "0.16.4"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
       url "https://github.com/timescale/ox/releases/download/v#{version}/ox-darwin-arm64"
-      sha256 "7a973da071aeca625030a6c3f7fbfa22c320fb3999dff101f1554809a72e84c1"
+      sha256 "58f8914e5005ed57cc848e8620f66405a2fbd66286b93d858319472d91850be4"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/timescale/ox/releases/download/v#{version}/ox-linux-arm64"
-      sha256 "db41f309103f14d33853f57223b666963968c355fff1bb826194ca7bafb7c894"
+      sha256 "bf90b356586b35cb73d37088cef660121a6a6bb24e008d2d2b1677ed5c49dee1"
     end
     on_intel do
       url "https://github.com/timescale/ox/releases/download/v#{version}/ox-linux-x64"
-      sha256 "5c7226933d6a316fc4cb10343f43bb97b547d6495df6417437fbdd3b863cc09a"
+      sha256 "07efa45e4799821ba5dc18707e5886c267dd77311560c50902eb482ad94fb68e"
     end
   end
 
