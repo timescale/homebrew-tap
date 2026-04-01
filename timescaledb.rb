@@ -10,16 +10,15 @@ class Timescaledb < Formula
 
   depends_on "cmake" => :build
   depends_on "openssl" => :build
-  depends_on "postgresql@17" => :build
+  depends_on "postgresql@18" => :build
   depends_on "xz" => :build
   depends_on "timescale/tap/timescaledb-tools" => :recommended
 
   def postgresql
-    Formula["postgresql@17"]
+    Formula["postgresql@18"]
   end
 
   def install
-    check_postgresql_version
     ossvar = build.with?("oss-only") ? " -DAPACHE_ONLY=1" : ""
     ssldir = Formula["openssl"].opt_prefix
 
@@ -38,13 +37,6 @@ class Timescaledb < Formula
     bin.install "timescaledb_move.sh"
     (lib/"timescaledb").install Dir["stage/**/lib/*"]
     (share/"timescaledb").install Dir["stage/**/share/postgresql*/extension/*"]
-  end
-
-  def check_postgresql_version
-    if postgresql.version >= Version.new('17.0') &&
-        postgresql.version <= Version.new('17.1') && postgresql.revision < 2
-      odie "PostgreSQL 17.02 or higher is required, but you have #{postgresql.version}.#{postgresql.revision}"
-    end
   end
 
   def caveats
