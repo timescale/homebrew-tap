@@ -1,24 +1,24 @@
 class Me < Formula
   desc "Permanent memory for AI agents"
   homepage "https://memory.build"
-  version "0.6.0"
+  version "0.6.1"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
       url "https://github.com/timescale/memory-engine/releases/download/v#{version}/me-darwin-arm64"
-      sha256 "cdd98b234fd30e9d721b30d79dc937a943bec6ba9ab4596c29209c9b8aefb46e"
+      sha256 "8f2d1cde02bae73adfb9d65495a537dd254cb21f25881cee3801863e701a30a9"
     end
   end
 
   on_linux do
     on_arm do
       url "https://github.com/timescale/memory-engine/releases/download/v#{version}/me-linux-arm64"
-      sha256 "afa556902d19566619a375f07131e3b3b8e36284fde07c54bff2e66a689e5fea"
+      sha256 "f6b84c7221db49dcda2df32bbe6aa4d1026ba0de02e5ba1ecbc0bc0722d770df"
     end
     on_intel do
       url "https://github.com/timescale/memory-engine/releases/download/v#{version}/me-linux-x64"
-      sha256 "3e9fab132139dfa26e4fdb76a8e0ee4434b0cc6cde6694ab3ded2312e1bc903c"
+      sha256 "b84f613fbc0262dd870b2830e393c652bcef87b1c10f9aec551d4444cdb275bd"
     end
   end
 
