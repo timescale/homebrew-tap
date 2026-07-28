@@ -10,12 +10,12 @@ class Timescaledb < Formula
 
   depends_on "cmake" => :build
   depends_on "openssl" => :build
-  depends_on "postgresql@17" => :build
+  depends_on "postgresql@18" => :build
   depends_on "xz" => :build
   depends_on "timescale/tap/timescaledb-tools" => :recommended
 
   def postgresql
-    Formula["postgresql@17"]
+    Formula["postgresql@18"]
   end
 
   def install
@@ -41,9 +41,8 @@ class Timescaledb < Formula
   end
 
   def check_postgresql_version
-    if postgresql.version >= Version.new('17.0') &&
-        postgresql.version <= Version.new('17.1') && postgresql.revision < 2
-      odie "PostgreSQL 17.02 or higher is required, but you have #{postgresql.version}.#{postgresql.revision}"
+    if postgresql.version >= Version.new("19.0")
+      odie "PostgreSQL 19 is not supported yet, but you have #{postgresql.version}"
     end
   end
 
