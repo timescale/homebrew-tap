@@ -6,25 +6,25 @@ cask "tiger-cli" do
     end
   end
 
-  version "0.27.0"
+  version "0.28.0"
 
   on_macos do
     on_arm do
-      sha256 "ec78853abfc7e5b21c588764fc090bda506df220220e4c75f4d96ec93c7fba22"
+      sha256 "b8c23002f33adc185d7159dbf91eee9e9f1d57131b1043567057f147833e1d3a"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Darwin_arm64.tar.gz"
     end
     on_intel do
-      sha256 "041689aba5d5501bf63ac22f4e0ad330265acbd81f68203859ddf98316005f5e"
+      sha256 "8b8589758fef4256cc0d4469c7400bf294fc9d327db872997da8bc26f079fffa"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Darwin_x86_64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "019a2ae27ed992e62214698408b89aec5401559f85206b81497f06165055c718"
+      sha256 "b32e57ef4479867fe0102b5fe56acac929b6172ad943a38cbb1dbb154619d68f"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Linux_arm64.tar.gz"
     end
     on_intel do
-      sha256 "8e8e64713fe613b52c48da290fb0ca2d27541c701896b00c6f2e877872ee112f"
+      sha256 "058cfc64d2dc5d6d74d232802916bf486188c21bc72cf399f1dc767ff9862f15"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Linux_x86_64.tar.gz"
     end
   end
