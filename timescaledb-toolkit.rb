@@ -1,8 +1,9 @@
 class TimescaledbToolkit < Formula
   desc "Extension for more hyperfunctions, fully compatible with TimescaleDB and PostgreSQL"
   homepage "https://www.timescale.com"
-  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.26.0.tar.gz"
-  sha256 "5b739ac6862f1159ed083ce5b72fc6b7f09442c7aa2a3b7c431d2647cc72a1c1"
+  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.27.0+p2.tar.gz"
+  version "1.27.0"
+  sha256 "42cb1af98f84656a60a8d312f72186f8fea44d15b1e48b9fd59a3c556b35e498"
   head "https://github.com/timescale/timescaledb-toolkit.git", branch: "main"
 
   depends_on "rust" => :build
