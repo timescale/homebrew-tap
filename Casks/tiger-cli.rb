@@ -6,25 +6,25 @@ cask "tiger-cli" do
     end
   end
 
-  version "0.28.0"
+  version "0.29.0"
 
   on_macos do
     on_arm do
-      sha256 "b8c23002f33adc185d7159dbf91eee9e9f1d57131b1043567057f147833e1d3a"
+      sha256 "b728f4775a410bcb35e4678719b77e6bd6e51e0b656eecbfe9b3d6dfab0fb05b"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Darwin_arm64.tar.gz"
     end
     on_intel do
-      sha256 "8b8589758fef4256cc0d4469c7400bf294fc9d327db872997da8bc26f079fffa"
+      sha256 "a0c163ca98b4d8c186e6d0fa170ab163fd51bed169f5b415704bfded8950bf52"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Darwin_x86_64.tar.gz"
     end
   end
   on_linux do
     on_arm do
-      sha256 "b32e57ef4479867fe0102b5fe56acac929b6172ad943a38cbb1dbb154619d68f"
+      sha256 "2f23ae3a4f6006d344a572312e45e8a63cb41c14802e1af7ce699f0ded8ea3a4"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Linux_arm64.tar.gz"
     end
     on_intel do
-      sha256 "058cfc64d2dc5d6d74d232802916bf486188c21bc72cf399f1dc767ff9862f15"
+      sha256 "8601dbac74cdec591650c1fb77bfac153db3fcdd4b76b347ad7b819f29c4eca9"
       url "https://cli.tigerdata.com/releases/v#{version}/tiger-cli_Linux_x86_64.tar.gz"
     end
   end
@@ -42,7 +42,7 @@ cask "tiger-cli" do
   zsh_completion "completions/tiger.zsh"
   fish_completion "completions/tiger.fish"
 
-  # No zap stanza required
+  zap :not_required
 
   caveats <<~EOS
     Tiger CLI has been installed successfully!\n\nGet started with:\n  tiger auth login\n  tiger mcp install\n\nFor help:\n  tiger help
