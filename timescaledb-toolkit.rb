@@ -1,8 +1,8 @@
 class TimescaledbToolkit < Formula
   desc "Extension for more hyperfunctions, fully compatible with TimescaleDB and PostgreSQL"
   homepage "https://www.timescale.com"
-  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.28.0.tar.gz"
-  sha256 "197057e1a88266e78c4cd57f06ceed6df4abdd6391152c11b6d496fe91a9eb0b"
+  url "https://github.com/timescale/timescaledb-toolkit/archive/refs/tags/1.29.0.tar.gz"
+  sha256 "2499be289a4e398b2647560012ed3861b696c6070d8a0855579c617ffef07716"
   head "https://github.com/timescale/timescaledb-toolkit.git", branch: "main"
 
   depends_on "rust" => :build
@@ -14,8 +14,8 @@ class TimescaledbToolkit < Formula
   end
 
   resource "cargo-pgrx" do
-    url "https://github.com/pgcentralfoundation/pgrx/archive/refs/tags/v0.18.1.tar.gz"
-    sha256 "a2a4ec1c90a17fe31a646cc2bd505992c28c375ba8a798d5cdeee27ca5d5ef0b"
+    url "https://github.com/pgcentralfoundation/pgrx/archive/refs/tags/v0.19.1.tar.gz"
+    sha256 "db105c96543559056ae8026ffa7754445883402aeb85fb62325b7072be4e911a"
   end
 
   def install
